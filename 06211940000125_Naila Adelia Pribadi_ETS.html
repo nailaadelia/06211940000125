@@ -1,0 +1,142 @@
+<html>
+
+<head>
+    <title>Naila Adelia Pribadi - 06211940000125</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const labels = [
+            'Head',
+            'Junior',
+            'Lead',
+            'Middle',
+            'Senior',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Software Engineer',
+                backgroundColor: 'rgb(0, 204, 204)',
+                borderColor: 'rgb(192, 192, 192)',
+                data: [89000, 43000, 88125, 53793.04, 75133.73],
+                stack: 'stack 0',
+            },
+            {
+                label: 'Backend Developer',
+                backgroundColor: 'rgb(255, 102, 255)',
+                borderColor: 'rgb(192, 192, 192)',
+                data: [95000, 63664.70, 93666.67, 58552.33, 75395.45],
+                stack: 'stack 0',
+            },
+            {
+                label: 'Data Scientist',
+                backgroundColor: 'rgb(102, 204, 0)',
+                borderColor: 'rgb(192, 192, 192)',
+                data: [91800, 50023.80, 90997.97, 61518.04, 75336.66],
+                stack: 'stack 1',
+            },
+            {
+                label: 'Frontend Developer',
+                backgroundColor: 'rgb(153, 153, 255)',
+                borderColor: 'rgb(192, 192, 192)',
+                data: [82500, 40500, 75520, 54696.61, 88162.98],
+                stack: 'stack 1',
+            },
+            ]
+        };
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Average IT Salary in European Union',
+                        font: {
+                            size: '55',
+                        }
+                    },
+                    subtitle: {
+                        display: true,
+                        text: 'Data source: https://www.kaggle.com/',
+                        font: {
+                            size: '15',
+                        },
+                    },
+                    legend: {
+                        position: 'bottom',
+                    },
+                },
+                responsive: true,
+                interaction: {
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Seniority Level',
+                            align: 'center',
+                            font: {
+                                size: 16,
+                            }
+                        },
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Average Salary',
+                            align: 'center',
+                            font: {
+                                size: 16,
+                            }
+                        }
+                    }
+                },
+                animations: {
+                    y: {
+                        easing: 'linear',
+                        from: (ctx) => {
+                            if (ctx.type === 'data') {
+                                if (ctx.mode === 'default' && !ctx.dropped) {
+                                    ctx.dropped = true;
+                                    return 0;
+                                }
+                            }
+                        }
+                    },
+                    borderWidth: {
+                        duration: 1500,
+                        easing: 'linear',
+                        from: 5,
+                        to: 1,
+                        loop: true,
+                    },
+                }
+            },
+            plugins: [ChartDataLabels],
+        };
+    </script>
+
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+
+
+</body>
+
+</html>
