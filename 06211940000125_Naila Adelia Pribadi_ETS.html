@@ -1,0 +1,141 @@
+<html>
+
+<head>
+    <title>Naila Adelia Pribadi - 06211940000125</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const labels = [
+            'Head',
+            'Junior',
+            'Lead',
+            'Middle',
+            'Senior',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Software Engineer',
+                backgroundColor: 'rgb(0, 204, 204)',
+                borderColor: 'rgb(96, 96, 96)',
+                data: [89000, 43000, 88125, 53793.04, 75133.73],
+                stack: 'stack 0',
+            },
+            {
+                label: 'Backend Developer',
+                backgroundColor: 'rgb(255, 0, 255)',
+                borderColor: 'rgb(96, 96, 96)',
+                data: [95000, 63664.70588, 93666.66667, 58552.32558, 75395.45455],
+                stack: 'stack 0',
+            },
+            {
+                label: 'Data Scientist',
+                backgroundColor: 'rgb(102, 204, 0)',
+                borderColor: 'rgb(96, 96, 96)',
+                data: [91800, 50023.80952, 90997.96875, 61518.04255, 75336.6599],
+                stack: 'stack 1',
+            },
+            {
+                label: 'Frontend Developer',
+                backgroundColor: 'rgb(127, 0, 255)',
+                borderColor: 'rgb(96, 96, 96)',
+                data: [82500, 40500, 75520, 54696.6129, 88162.97872],
+                stack: 'stack 1',
+            },
+            ]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Average IT Salary in European Union',
+                        font: {
+                            size: '55',
+                        }
+                    },
+                    subtitle: {
+                        display: true,
+                        text: 'Data source: https://www.kaggle.com/',
+                        font: {
+                            size: '15',
+                        },
+                    },
+                    legend: {
+                        position: 'bottom',
+                    },
+                },
+                responsive: true,
+                interaction: {
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Seniority Level',
+                            align: 'center',
+                            font: {
+                                size: 16,
+                            }
+                        },
+                    },
+                    y: {
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Average Salary',
+                            align: 'center',
+                            font: {
+                                size: 16,
+                            }
+                        }
+                    }
+                },
+                animations: {
+                    y: {
+                        easing: 'linear',
+                        from: (ctx) => {
+                            if (ctx.type === 'data') {
+                                if (ctx.mode === 'default' && !ctx.dropped) {
+                                    ctx.dropped = true;
+                                    return 0;
+                                }
+                            }
+                        }
+                    },
+                    borderWidth: {
+                        duration: 1500,
+                        easing: 'linear',
+                        from: 4,
+                        to: 1,
+                        loop: true,
+                    },
+                }
+            }
+        };
+    </script>
+
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+
+
+</body>
+
+</html>
